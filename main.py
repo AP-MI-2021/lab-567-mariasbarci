@@ -1,18 +1,20 @@
-import copy
-from Logic.crud import adaugare_obiect
-from Tests.run_all import run_all
-from UserInterface.console import run_menu
 
+from Tests.run_all import runAllTests
+from UserInterface.console import runMenu
+from UserInterface.command_line_console import command_line_console
 
 def main():
-    lista = []
-    lista = adaugare_obiect(lista, 1, "Obiect intai", "Descriere1", 150, "loc1")
-    lista = adaugare_obiect(lista, 2, "Obiect doi", "Descriere2", 150, "loc2")
-    lista = adaugare_obiect(lista, 3, "Obiect trei", "Descriere3", 10.9, "loc3")
-    lista = adaugare_obiect(lista, 4, "Obiect patru", "Descriere4", 89.8, "loca")
-    undo_lista = copy.deepcopy(lista)
-    run_menu(lista,undo_lista)
+    lista=[]
+    while True:
+        optiune=input("Dati optiunea: ")
+        if optiune=="1":
+            lista=runMenu(lista)
+        elif optiune=="2":
+            command_line_console(lista)
+        elif optiune == "x":
+            break
+        else:
+            print("Optiune invalida! Reincercati!")
 
-
-run_all()
+runAllTests()
 main()

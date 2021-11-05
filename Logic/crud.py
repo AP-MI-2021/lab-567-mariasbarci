@@ -1,66 +1,73 @@
-from Domain.obiect import creare_obiect, get_id, get_nume, get_pret, get_descriere, get_locatie
+from Domain.obiect import creare_obiect, get_id
 
 
-def get_by_id(lista_obiecte, id):
-    """
-    Returnarea obiectului cu id ul dat
-    :param lista_obiecte: lista cu obiecte
-    :param id: id ul obiectului cautat
-    :return: obiectul cu id ul cerut sau None daca nu exista
-    """
-    for obiect in lista_obiecte:
+def adaugare_obiect(id, nume, descriere, pret, locatie, lista):
+    '''
+    Adauga un obiect intr-o lista
+    :param id: string
+    :param nume: string
+    :param descriere: string
+    :param pret: float
+    :param locatie: string
+    :param lista: lista de obiecte
+    :return: o lista continand vechile obiecte si noul obiect
+    '''
+    if get_by_id(id, lista) is not None:
+        raise ValueError("Id-ul exista deja! ")
+    if pret < 0:
+        raise ValueError("Pretul trebuie sa fie pozitiv!")
+    if len(locatie)!=4:
+        raise ValueError("Locatia trb sa aiba 4 caractere")
+    obiect=creare_obiect(id, nume, descriere, pret, locatie)
+    return lista + [obiect]
+
+
+def get_by_id(id, lista):
+    '''
+    Da elementul din lista cu un id dat
+    :param id: string
+    :param lista: lista de obiecte
+    :return: obiectul cu id-ul dat sau None daca nu exista
+    '''
+    for obiect in lista:
         if get_id(obiect) == id:
             return obiect
     return None
 
+def sterge_obiect(id, lista):
+    '''
+    Sterge obiectul cu id-ul dat dintr-o lista
+    :param id: id-ul obiectului care se va sterge
+    :param lista: lista de obiecte
+    :return: o lista de obiecte fara obiectul cu id-ul dat
+    '''
+    if get_by_id(id,lista) is None:
+        raise ValueError("Id-ul nu exista")
+    return [obiect for obiect in lista if get_id(obiect)!= id]
 
-def adaugare_obiect(lista_obiecte, id, nume, descriere, pret, locatie):
-    """
-    Adauga in lista cu obiecte un obiect dat
-    :param lista_obiecte: lista cu obiecte
-    :param id: id-ul obiectului ce trebuie adaugat listei obiectelor
-    :param nume:
-    :param descriere:
-    :param pret:
-    :param locatie:
-    :return: lista cu obiectul cerut adaugat
-    """
-    obiect = creare_obiect(id, nume, descriere, pret, locatie)
-    return lista_obiecte + [obiect]
+def modificare_obiect(id, nume, descriere, pret, locatie, lista):
+    '''
+    Modifica obiectul cu id-ul dat
+    :param id: id-ul obiectului
+    :param nume: numele obiectului
+    :param descriere: descrierea obiectului
+    :param pret: pretul obiectului
+    :param locatie: locatia obiectului
+    :param lista: o lista de obiecte
+    :return: lista modificata
+    '''
+    if len(locatie)!=4:
+        raise ValueError("Locatia trb sa aiba 4 caractere")
+    if pret < 0:
+        raise ValueError("Pretul trebuie sa fie pozitiv!")
 
-
-def sterge_obiect(lista_obiecte, id):
-    """
-    Sterge din lista cu obiecte un obiectu cu id-ul dat
-    :param lista_obiecte: lista cu obiecte
-    :param id: id-ul obiectului ce trebuie sters
-    :return: lista cu obiectul dat sters
-    """
-    return [obiect for obiect in lista_obiecte if get_id(obiect) != id]
-
-
-def modificare_obiect(lista_obiecte, id, nume, descriere, pret, locatie):
-    """
-    Modifica in lista cu obiecte obiectul cu id-ul dat
-    :param lista_obiecte: lista cu obiecte
-    :param id: id-ul obiectului ce trebuie modificat
-    :param nume: numele modicat sau "" daca nu se modifica
-    :param descriere: descrierea modificata sau "" daca nu se modifica
-    :param pret: pretul modificat sau -1 daca nu se modifica
-    :param locatie: locatie modificata sau "" daca nu se modifica
-    :return: lista cu obiecte in care obiectul cu id-ul dat este modificat
-    """
-    lista_modificata = []
-    for obiect in lista_obiecte:
-        if get_id(obiect) == id:
-            obiect_nou = creare_obiect(
-                id,
-                nume if nume != "" else get_nume(obiect),
-                descriere if descriere != "" else get_descriere(obiect),
-                pret if pret != -1 else get_pret(obiect),
-                locatie if locatie != "" else get_locatie(obiect)
-            )
-            lista_modificata.append(obiect_nou)
+    if get_by_id(id,lista) is None:
+        raise ValueError("Id-ul nu exista! ")
+    listaNoua=[]
+    for obiect in lista:
+        if get_id(obiect)==id:
+            obiectNou=creare_obiect(id, nume, descriere, pret, locatie)
+            listaNoua.append(obiectNou)
         else:
-            lista_modificata.append(obiect)
-    return lista_modificata
+            listaNoua.append(obiect)
+    return listaNoua

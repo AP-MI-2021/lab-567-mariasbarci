@@ -1,13 +1,17 @@
-from Tests.Teste_functionalitati import  test_mutare_locatie, test_concatenare_descriere,test_ordonare_dupa_pret
-from Tests.tests_domain import test_domeniu
-from Tests.tests_logic_crud import test_adaugare_obiect,test_modificare_obiect,test_sterge_obiect
+from Tests.Teste_functionalitati import test_concatenre_obiect,test_pretmaximloc,test_suma_preturi,test_mutare_obiecte,test_Ordonare_Pret
+from Tests.tests_logic_crud import testAdaugaObiect, testStergeObiect, testModificaObiect
+from Tests.tests_domain import testObiect
 
 
-def run_all():
-    test_sterge_obiect()
-    test_adaugare_obiect()
-    test_modificare_obiect()
-    test_domeniu()
-    test_mutare_locatie()
-    test_concatenare_descriere()
-    test_ordonare_dupa_pret()
+def runAllTests():
+    testObiect()
+    testAdaugaObiect()
+    testStergeObiect()
+    testModificaObiect()
+    test_mutare_obiecte()
+    test_concatenre_obiect()
+    test_pretmaximloc()
+    test_Ordonare_Pret()
+
+
+test_suma_preturi()

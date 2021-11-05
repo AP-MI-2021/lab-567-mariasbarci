@@ -1,132 +1,55 @@
 def creare_obiect(id, nume, descriere, pret, locatie):
     '''
-
+    Creeaza o lista ce reprezinta un obiect
     :param id: string
     :param nume: string
     :param descriere: string
     :param pret: float
     :param locatie: string
-    :return:
+    :return: o lista ce contine un obiect
     '''
-    return {
-        "id":id,
-        "nume":nume,
-        "descriere":descriere,
-        "pret":pret,
-        "locatie":locatie
-    }
-    return [id, nume, descriere, pret, locatie]
-    #return {
-    #    "id": id,
-    #    "nume": nume,
-    #    "descriere": descriere,
-    #    "pret": pret,
-    #    "locatie": locatie
-    #}
-
-
-def get_id(obiect):
-    """
+    lista=[id,nume,descriere,pret,locatie]
+    return lista
+def get_id(lista):
+    '''
     Da id-ul unui obiect
-    :param obiect: dict
-    :return:
-    """
-    return obiect["id"]
-    return obiect[0]
-    #return obiect["id"]
-
-def set_id(obiect, id):
+    :param obiect: lista ce retine un obiect
+    :return: id-ul obiectului
     '''
-    :param obiect: dict
-    :param id: string
-    :return:
+    return lista[0]
+def get_nume(lista):
     '''
-    obiect["id"] = id
-    obiect[0] = id
-    # obiect["id"] = id
-
-
-def get_nume(obiect):
-    """
-    Da numele obiectului
-    :param nume: string
-    :return:
-    """
-    return obiect["nume"]
-    return obiect[1]
-    # return obiect["nume"]
-
-
-def set_nume(obiect, nume):
-    """
-    :param nume: string
-    :return:
-    """
-    obiect["nume"] = nume
-    obiect[1] = nume
-    #obiect["nume"] = nume
-
-def get_descriere(obiect):
-    """
+    Da numele unui obiect
+    :param obiect: lista ce retine un obiect
+    :return: numele obiectului
+    '''
+    return lista[1]
+def get_descriere(lista):
+    '''
     Da descrierea unui obiect
-    :param obiect: dict
-    :return:
-    """
-    return obiect["descriere"]
-    return obiect[2]
-    #return obiect["descriere"]
-
-def set_descriere(obiect, descriere):
-    """
-    :param descriere: string
-    :return:
-    """
-    obiect["descriere"] = descriere
-    obiect[2] = descriere
-    #obiect["descriere"] = descriere
-
-def get_pret(obiect):
-    """
-    Da pretul  obiectului
-    :param obiect: dict
-    :return:
-    """
-    return obiect["pret"]
-    return obiect[3]
-    #return obiect["pret"]
-
-def set_pret(obiect, pret):
-    """
-    :param pret: float
-    :return:
-    """
-    obiect["pret"] = pret
-    obiect[3] = pret
-    # obiect["pret"] = pret
-
-def get_locatie(obiect):
-    """
+    :param obiect: lista ce retine un obiect
+    :return: descrierea obiectului
+    '''
+    return lista[2]
+def get_pret(lista):
+    '''
+    Da pretul unui obiect
+    :param obiect: lista ce retine un obiect
+    :return: pretul obiectului
+    '''
+    return lista[3]
+def get_locatie(lista):
+    '''
     Da locatia unui obiect
-    :param obiect: dict
-    :return: locatie obiect - string
-    """
-    return obiect["locatie"]
-    return obiect[4]
-    #return obiect["locatie"]
-
-
-def set_locatie(obiect, locatie):
-    """
-    :param locatie: string
-    :return:
-    """
-    obiect["locatie"] = locatie
-    obiect[4] = locatie
-    #obiect["locatie"] = locatie
-
-
-def format_afisare(obiect):
-    return f"id: {get_id(obiect)} \n nume: {get_nume(obiect)} \n" \
-           f"descriere: {get_descriere(obiect)} \n" \
-           f"pret: {get_pret(obiect)}\n" \
-           f"locatie: {get_locatie(obiect)}"
+    :param obiect: lista ce retine un obiect
+    :return: locatia obiectului
+    '''
+    return lista[4]
+def toString(obiect):
+    return "Id: {}, Nume: {}, Descriere: {}, Pret: {}, Locatie: {}".format(
+        get_id(obiect),
+        get_nume(obiect),
+        get_descriere(obiect),
+        get_pret(obiect),
+        get_locatie(obiect)
+    )
